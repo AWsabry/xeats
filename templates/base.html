@@ -1,0 +1,207 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="en">
+	<head>
+		<meta charset="UTF-8">
+		<meta name="keywords" content="Food Ordering platform for Nile University Events">
+		<meta name="author" content="creativegigs">
+		<meta name="description" content="Food Ordering platform for Nile University Events">
+		<meta name='og:image' content={% static "images/01.png"%}>
+		
+		<!-- For IE -->
+		<meta http-equiv="X-UA-Compatible" content="IE=edge">
+		<!-- For Resposive Device -->
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<!-- For Window Tab Color -->
+		<!-- Chrome, Firefox OS and Opera -->
+		<meta name="theme-color" content="#fff">
+		<!-- Windows Phone -->
+		<meta name="msapplication-navbutton-color" content="#fff">
+		<!-- iOS Safari -->
+		<meta name="apple-mobile-web-app-status-bar-style" content="#fff">
+		<title>X-Eats</title>
+		<!-- Favicon -->
+		<link rel="icon" type="image/png" sizes="56x56" href="{% static "images/01.png"%}">
+		
+		<!-- Main style sheet -->
+		<link rel="stylesheet" type="text/css" href="{% static "css/style.css" %}">
+        
+		<!-- responsive style sheet -->
+		<link rel="stylesheet" type="text/css" href="{% static "css/responsive.css" %}">
+
+		<!-- Fix Internet Explorer ______________________________________-->
+		<!--[if lt IE 9]>
+			<script src="http://html5shiv.googlecode.com/svn/trunk/html5.js"></script>
+			<script src="vendor/html5shiv.js"></script>
+			<script src="vendor/respond.js"></script>
+		<![endif]-->	
+	</head>
+
+	<body>
+		<div class="main-page-wrapper">
+
+			<!-- ===================================================
+				Loading Transition
+			==================================================== -->
+			<!-- Preloader -->
+			<section>
+				<div id="preloader">
+					<div id="ctn-preloader" class="ctn-preloader">
+						<div class="animation-preloader">
+							<div class="icon"><img src="{% static "images/1.svg"%}" alt=""></div>
+							
+							<div class="txt-loading">
+								<span data-text-preloader="X" class="letters-loading">
+									X
+								</span>
+								<span data-text-preloader="-" class="letters-loading">
+									-
+								</span>
+								<span data-text-preloader="E" class="letters-loading">
+									E
+								</span>
+								<span data-text-preloader="A" class="letters-loading">
+									A
+								</span>
+								<span data-text-preloader="T" class="letters-loading">
+									T
+								</span>
+								<span data-text-preloader="S" class="letters-loading">
+									S
+								</span>
+							</div>
+						</div>	
+					</div>
+				</div>
+			</section>
+
+
+			<!-- 
+			=============================================
+				Theme Main Menu
+			============================================== 
+			-->
+			<div class="theme-main-menu theme-menu-two main-p-color sticky-menu">
+				<div class="d-flex align-items-center">
+					<div class="right-content ml-auto order-lg-3">
+						<a href="https://www.facebook.com/XEats" class="theme-btn line-button-one button-rose contact-button button-white-bg">Contact us</a>
+					</div>
+					<nav id="mega-menu-holder" class="navbar navbar-expand-lg order-lg-2">
+						<div  class="container nav-container">
+							<button class="navbar-toggler navbar-toggler-right" type="button" data-toggle="collapse" data-target="#navbarSupportedContent" aria-controls="navbarSupportedContent" aria-expanded="false" aria-label="Toggle navigation">
+						        <i class="flaticon-setup"></i>
+						    </button>
+						   <div class="collapse navbar-collapse" id="navbarSupportedContent">
+						   		<ul class="navbar-nav">
+								    <li class="nav-item dropdown mega-dropdown-holder active">
+							            <a class="nav-link dropdown-toggle" href="/" data-toggle="dropdown">Home</a>
+							        </li>
+								    <li class="nav-item dropdown">
+							            <a class="nav-link dropdown-toggle" href="#shop" data-toggle="dropdown">Store.</a>
+							            
+							        </li>
+							        <li class="nav-item dropdown icon-menu">
+							            <a class="nav-link dropdown-toggle" href="https://www.facebook.com/XEats" data-toggle="dropdown">About Us.</a>
+							            
+							        </li>
+							   </ul>
+						   </div>
+						</div> 
+					</nav> 
+				</div>
+			</div> <!-- /.theme-main-menu -->
+
+
+			
+			<!-- 
+			=============================================
+				Theme Main Banner One
+			============================================== 
+-->
+			{% block content %}{% endblock content %}
+
+
+			<!-- 			=====================================================
+				Footer
+			=====================================================
+			-->
+			<footer class="theme-footer-one main-p-color pt-130">
+				<div class="top-footer">
+					<div class="container">
+						<div class="row">
+							<div class="col-lg-3 col-sm-6 col-12 footer-about-widget">
+								<a href="" class="logo">X-Eats</a>
+								
+								<a href="mailto:themarketer.2000@gmail.com" class="email">themarketer.2000@gmail.com</a>
+								<a href="#" class="phone">+201015881141</a>
+								
+							</div> <!-- /.about-widget -->
+							<div class="col-lg-3 col-lg-3 col-sm-6 col-12 footer-list">
+								<h5 class="footer-title">Services</h5>
+								<ul>
+									<li>Food Delivery Solution for Events</li>
+								</ul>
+
+							</div> <!-- /.footer-recent-post -->
+							<div class="col-lg-3 col-sm-6 col-12 footer-list">
+								<h5 class="footer-title">About us</h5>
+								<ul>
+									<li><a href="about-standard.html">About us</a></li>
+								</ul>
+							</div> <!-- /.footer-list -->
+							<div class="col-lg-3 col-lg-2 col-sm-6 col-12 footer-information">
+								<h5 class="footer-title">Our Address</h5>
+								<p>Nile University <br>Giza, Egypt</p>
+								<ul>
+									<li><a href="https://www.facebook.com/XEats"><i class="fa fa-facebook" aria-hidden="true"></i></a></li>
+									<li><a href="https://www.linkedin.com/in/abdelrahman-wael-bbb655192/"><i class="fa fa-linkedin" aria-hidden="true"></i></a></li>
+								</ul>
+							</div>
+						</div> <!-- /.row -->
+					</div> <!-- /.container -->
+				</div> <!-- /.top-footer -->
+			
+			</footer> <!-- /.theme-footer-one -->
+			
+
+	        
+
+	        <!-- Scroll Top Button -->
+			<button class="scroll-top tran3s">
+				<i class="fa fa-angle-up" aria-hidden="true"></i>
+			</button>
+
+			
+
+
+		<!-- Optional JavaScript _____________________________  -->
+
+    	<!-- jQuery first, then Popper.js, then Bootstrap JS -->
+    	<!-- jQuery -->
+		<script src="static/vendor/jquery.2.2.3.min.js"></script>
+		<!-- Popper js -->
+		<script src="static/vendor/popper.js/popper.min.js"></script>
+		<!-- Bootstrap JS -->
+		<script src="static/vendor/bootstrap/js/bootstrap.min.js"></script>
+	    <!-- menu  -->
+		<script src="static/vendor/mega-menu/assets/js/custom.js"></script>
+		<!-- AOS js -->
+		<script src="static/vendor/aos-next/dist/aos.js"></script>
+		<!-- WOW js -->
+		<script src="static/vendor/WOW-master/dist/wow.min.js"></script>
+		<!-- owl.carousel -->
+		<script src="static/vendor/owl-carousel/owl.carousel.min.js"></script>
+		<!-- ajaxchimp -->
+		<script src="static/vendor/ajaxchimp/jquery.ajaxchimp.min.js"></script>
+		<!-- Fancybox -->
+		<script src="static/vendor/fancybox/dist/jquery.fancybox.min.js"></script>
+		<!-- Tilt js -->
+		<script src="static/vendor/tilt.jquery.js"></script>
+
+
+		<!-- Theme js -->
+		<script src="static/js/theme.js"></script>
+		</div> <!-- /.main-page-wrapper -->
+	</body>
+</html>

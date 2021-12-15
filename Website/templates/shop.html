@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+
+<div class="full-width-container pt-250 pb-180 md-pt-200 md-pb-120">
+	
+
+	<!-- SHOP SHOWCASE -->
+	<div class="product-showcase">
+		<div class="row gutter-80">
+			{% for docs in docs %}
+			<div class="col-xl-3 col-lg-4 col-sm-6">
+				<div class="single-product-case">
+					<div class="img-holder">
+						<img src="{{docs.image}}" alt="">
+						<a href="{{docs.id}}" class="cart-button">View Product</a>
+					</div>
+					<div class="info">
+						<a href="shop-details.html" class="product-name">{{docs.name}}</a>
+						<div class="price">L.E {{docs.price}}</div>
+						<br>
+						<div class="price">Category : {{docs.category}}</div>
+					</div>
+				</div> <!-- /.single-product-case -->
+			</div> <!-- /.col- -->
+			{% endfor %}
+		</div> <!-- /.row -->
+	</div> <!-- /.product-showcase -->
+
+
+
+			
+			{% endblock content %}
