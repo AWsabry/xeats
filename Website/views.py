@@ -1,3 +1,4 @@
+from datetime import datetime
 from django.http import request
 from django.shortcuts import redirect, render
 import firebase_admin
@@ -6,6 +7,7 @@ from firebase_admin import firestore
 import uuid
 import pyrebase
 import json
+from .decorators import login_session_required
 
 # Create your views here.
 
@@ -41,11 +43,11 @@ def contacts(request):
             firstName = request.POST.get('firstName')
             lastName = request.POST.get('lastName')
             Email = request.POST.get('Email')
-            Password = request.POST.get('Password')
+            # Password = request.POST.get('Password')
             PhoneNumber = request.POST.get('PhoneNumber')
             old_auth = firebase.auth()
             XEats_User = old_auth.create_user_with_email_and_password(
-                Email, Password)
+                Email, 'Password')
             user = old_auth.refresh(XEats_User['refreshToken'])
             ID = uuid.uuid4()
             request.session['Email'] = Email
@@ -66,6 +68,8 @@ def contacts(request):
         print("GETTING")
     return render(request, 'contacts.html')
 
+
+@login_session_required(login_url= 'contacts')
 def shop(request,):
     from google.cloud import firestore
     docs = db.collection(u'products').stream()
@@ -90,7 +94,7 @@ def shop(request,):
     })
 
 
-
+@login_session_required(login_url= 'contacts')
 def productDetails(request, id):
     Email = request.session['Email']
     ProductsGet = db.collection('products').document(str(id))
@@ -130,7 +134,7 @@ def productDetails(request, id):
     return render(request, 'productDetails.html', {'ProductsGet': doc})
 
 
-
+@login_session_required(login_url= 'contacts')
 def checkout(request):
     Email = request.session['Email']
     OrderNote = request.POST.get('OrderNote')
@@ -154,7 +158,8 @@ def checkout(request):
                 'PhoneNumber': PhoneNumber,
                 'OrderNote': OrderNote,
                 'cart': cart,
-                'Ordered': False
+                'Paid': False,
+                'CreatedAt' :datetime.now()
             }),
             userGet.update({
                 'cart': [],
@@ -167,6 +172,8 @@ def checkout(request):
         print("GETTING")
     return render(request, 'checkout.html',{'usersdocs': usersdocs})
 
-
+@login_session_required(login_url= 'contacts')
 def thankyou(request):
     return render(request, 'thankyou.html')
+
+# /home/XEatsNew/X-Eats-Website
