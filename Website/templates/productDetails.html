@@ -1,71 +1,25 @@
 {% extends 'base.html' %}
 {% load static %}
 {% block content %}
-			<div class="theme-main-menu theme-menu-one menu-white main-p-color">
-				<div class="d-flex align-items-center">
-					<div class="logo mr-auto"><a href="index.html"><img src="images/logo/logo.svg" alt=""></a></div>
-					<div class="right-content">
-						<ul class="d-flex align-items-center">
-							<li class="action-list-item cart-action-wrapper">
-								<div class="dropdown">
-									<button class="dropdown-toggle" data-toggle="dropdown">
-									    <img src="images/icon/icon1.svg" alt="">
-									    <span class="item-count">02</span>
-									</button>
-									<div class="dropdown-menu dropdown-menu-right">
-										<ul class="cart-product-list">
-											<li class="clearfix selected-item">
-												<a href="#" class="item-img"><img src="images/shop/1.png" alt=""></a>
-												<div class="item-info">
-													<a href="#" class="name">Blue Fery.</a>
-													<div class="price">$38.00 <span class="quantity">x 1</span></div>
-													<a href="#" class="close"><i class="fa fa-window-close" aria-hidden="true"></i></a>
-												</div> <!-- /.item-info -->
-											</li> <!-- /.selected-item -->
-											<li class="clearfix selected-item">
-												<a href="#" class="item-img"><img src="images/shop/2.png" alt=""></a>
-												<div class="item-info">
-													<a href="#" class="name">Vibrant Shoe.</a>
-													<div class="price">$125.00 <span class="quantity">x 1</span></div>
-													<a href="#" class="close"><i class="fa fa-window-close" aria-hidden="true"></i></a>
-												</div> <!-- /.item-info -->
-											</li> <!-- /.selected-item -->
-										</ul> <!-- /.cart-product-list -->
-										<div class="subtotal d-flex justify-content-between align-items-center">
-											<div class="title">Subtotal</div>
-											<div class="total-price">$163.00</div>
-										</div>
-										<ul class="button-group">
-											<li><a href="cart.html" class="view-cart tran3s">View Cart</a></li>
-											<li><a href="checkout.html" class="checkout tran3s">Checkout</a></li>
-										</ul>
-									</div> <!-- /.dropdown-menu -->
-								</div>
-							</li> <!-- /.cart-action-wrapper -->
-							<li><button class="sidebar-menu-open"><img src="images/icon/menu-black.svg" alt=""></button></li>
-						</ul>
-					</div>
-					
-				</div>
-			</div> <!-- /.theme-main-menu -->
 
 
 
 
-			<!-- 
+
+			<!--
 			=============================================
 				Promo Code
-			============================================== 
+			==============================================
 			-->
-		
+
 
 
 <br><br><br><br><br><br><br>
-			
-			<!-- 
+
+			<!--
 			=============================================
 				Shop Details
-			============================================== 
+			==============================================
 			-->
 			<div class="shop-details pb-150 md-pb-120">
 				<div class="container">
@@ -76,9 +30,9 @@
 									<div id="menu0" class="tab-pane fade show active"><img src="{{ProductsGet.image}}" alt=""></div>
 								</div>
 							</div>
-                            
+
 							<div class="col-md-6 col-xs-12">
-                                
+
 								<div class="product-info">
 									<h3 class="product-name">{{ProductsGet.name}}</h3>
 									<strong class="price">L.E {{ProductsGet.price}}</strong>
@@ -94,15 +48,15 @@
                                             </div>
                                         </form> <!-- /.checkout-form -->
 									</div> <!-- /.customize-order -->
-									
-									
-                                    
+
+
+
 								</div> <!-- /.product-info -->
 							</div> <!-- /.col- -->
-                            
+
 						</div> <!-- /.row -->
 					</div> <!-- /.procuct-details -->
-					
+
 				</div> <!-- /.container -->
 			</div> <!-- /.shop-page -->
 

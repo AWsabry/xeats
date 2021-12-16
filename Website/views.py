@@ -6,9 +6,6 @@ from firebase_admin import firestore
 import uuid
 import pyrebase
 import json
-from getpass import getpass
-from google.cloud.firestore_v1 import Increment
-import ast
 
 # Create your views here.
 
@@ -38,49 +35,6 @@ db = firestore.client()
 def index(request):
     return render(request, 'index.html')
 
-
-def productDetails(request, id):
-    Email = request.session['Email']
-    ProductsGet = db.collection('products').document(str(id))
-    doc = ProductsGet.get().to_dict()
-    
-    userGet = db.collection('users').document(Email)
-    usersdocs = userGet.get().to_dict()
-        
-    if request.method == 'POST':
-        try:
-            Quantity = request.POST.get('Quantity')
-            cartItem = {
-                'ProductName': doc['name'],
-                'Quantity': int(Quantity),
-                'Price': doc['price'],
-                'Category': doc['category'],
-                'ProductID': doc['id']
-            }
-            
-            totalPrice = int(Quantity) * doc['price']        
-            total = usersdocs['total'] + totalPrice 
-            
-            cart = usersdocs['cart']
-            cart.append(cartItem)
-            print(cart)
-            userGet.update({
-                'cart': cart,
-                'total': total 
-            })
-            return redirect('checkout')
-        except Exception as e:
-            print(str(e))
-    else:
-        print("GETTING")
-
-    return render(request, 'productDetails.html', {'ProductsGet': doc})
-
-
-def thankyou(request):
-    return render(request, 'thankyou.html')
-
-
 def contacts(request):
     if request.method == 'POST':
         try:
@@ -94,6 +48,7 @@ def contacts(request):
                 Email, Password)
             user = old_auth.refresh(XEats_User['refreshToken'])
             ID = uuid.uuid4()
+            request.session['Email'] = Email
             new_doc_ref = db.collection('users').document(Email)
             new_doc_ref.set({
                 'firstName': firstName,
@@ -103,14 +58,77 @@ def contacts(request):
                 'PhoneNumber': PhoneNumber,
                 'cart': [],
             }),
-            request.session['Email'] = Email
-            
+
             return redirect('shop')
         except Exception as e:
             print(str(e))
     else:
         print("GETTING")
     return render(request, 'contacts.html')
+
+def shop(request,):
+    from google.cloud import firestore
+    docs = db.collection(u'products').stream()
+    auth = firebase.auth()
+    passed_values = [doc.to_dict() for doc in docs]
+    Email = request.session['Email']
+
+    print(Email)
+
+    #request.session['Email'] = Email
+
+    for i in passed_values:
+        id = i['id']
+        productName = i['name']
+        price = i['price']
+        category = i['category']
+
+    if request.method == 'POST':
+        redirect('productDetails', {'id': id, })
+    return render(request, 'shop.html', {
+        "docs": passed_values,
+    })
+
+
+
+def productDetails(request, id):
+    Email = request.session['Email']
+    ProductsGet = db.collection('products').document(str(id))
+    doc = ProductsGet.get().to_dict()
+
+    userGet = db.collection('users').document(Email)
+    usersdocs = userGet.get().to_dict()
+
+    if request.method == 'POST':
+        try:
+            Quantity = request.POST.get('Quantity')
+            request.session['Email'] = Email
+            cartItem = {
+                'ProductName': doc['name'],
+                'Quantity': int(Quantity),
+                'Price': doc['price'],
+                'Category': doc['category'],
+                'ProductID': doc['id']
+            }
+
+            totalPrice = int(Quantity) * doc['price']
+            total = usersdocs['total'] + totalPrice
+
+            cart = usersdocs['cart']
+            cart.append(cartItem)
+            print(cart)
+            userGet.update({
+                'cart': cart,
+                'total': total
+            })
+            return redirect('checkout')
+        except Exception as e:
+            print(str(e))
+    else:
+        print("GETTING")
+
+    return render(request, 'productDetails.html', {'ProductsGet': doc})
+
 
 
 def checkout(request):
@@ -135,7 +153,8 @@ def checkout(request):
                 'price': total + 5,
                 'PhoneNumber': PhoneNumber,
                 'OrderNote': OrderNote,
-                'cart': cart
+                'cart': cart,
+                'Ordered': False
             }),
             userGet.update({
                 'cart': [],
@@ -149,25 +168,5 @@ def checkout(request):
     return render(request, 'checkout.html',{'usersdocs': usersdocs})
 
 
-def shop(request):
-    from google.cloud import firestore
-    docs = db.collection(u'products').stream()
-    auth = firebase.auth()
-    passed_values = [doc.to_dict() for doc in docs]
-    Email = request.session['Email']
-
-    print(Email)
-
-    request.session['Email'] = Email
-
-    for i in passed_values:
-        id = i['id']
-        productName = i['name']
-        price = i['price']
-        category = i['category']
-
-    if request.method == 'POST':
-        redirect('productDetails', {'id': id, })
-    return render(request, 'shop.html', {
-        "docs": passed_values,
-    })
+def thankyou(request):
+    return render(request, 'thankyou.html')
