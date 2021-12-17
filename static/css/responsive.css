@@ -308,6 +308,8 @@
   .sidebar-menu-open {margin-left: 30px;}
 }
 @media (max-width: 400px) {
+  .navlog{display: flex; font-size: 15px;}
+  .clear_cart{margin-top: 20px;}
   .pricing-plan-classic .tab-content .table-content .price-table {width: 100%;}
   .theme-form-style-two,.testimonial-section-standard .customer-content {padding-left: 15px;padding-right: 15px;}
   .testimonial-section-standard .customer-content:before {display: none;}

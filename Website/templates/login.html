@@ -24,17 +24,14 @@
                     {% endfor %}
                     {% endif %}
                     <div class="user-profile-data">
-                        <div class="row">
-                            <div class="col-md-6"><input name='firstName' id='firstName' type="text" placeholder="First Name*" class="single-input-wrapper" required></div>
-                            <div class="col-md-6"><input name='lastName' id='lastName' type="text" placeholder="Last Name*" class="single-input-wrapper" required></div>									
+                        <div>
                             <div class="col-lg-6"><input name='Email' id='Email' type="email" placeholder="Email Address*" class="single-input-wrapper" required></div>
                             <div class="col-lg-6"><input name='Password' id='Password' type="Password" placeholder="Password*" class="single-input-wrapper" required></div>
-                            <div class="col-lg-6"><input name='PhoneNumber' id='PhoneNumber' type="text" placeholder="Phone Number*" class="single-input-wrapper" required></div>
                             <div class="col-12">
                             </div>
                             <div class="col-12">
                                 <br>
-                                <button  type="submit" class="theme-button-three">Register</button> <p class="signUp-text text-center">Do you have account? <a href="{% url 'login' %}" style="color: rgb(40, 40, 200);">Login</a> now.</p>
+                                <button  type="submit" class="theme-button-three">Loign</button> <p class="signUp-text text-center">Don’t have any account? <a href="{% url 'contacts' %}" style="color: rgb(40, 40, 200);">Sign up</a> now.</p>
 
                             </div>
                         </div> <!-- /.row -->

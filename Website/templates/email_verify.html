@@ -1,0 +1,46 @@
+{% extends 'base.html' %}
+
+{% block content %}
+<div class="signUp-page signUp-minimal pt-50 pb-100">
+    <div class="shape-wrapper">
+        <span style="background-color: rgb(55, 55, 240);"></span>
+        <span style="background-color: rgb(55, 55, 240);"></span>
+        <span style="background-color: rgb(55, 55, 240);"></span>
+        <span style="background-color: rgb(55, 55, 240);"></span>
+        <span style="background-color: rgb(55, 55, 240);"></span>
+    </div> <!-- /.shape-wrapper -->
+    <div class="signin-form-wrapper" style="position: relative;transform: translateY(200px);background: white;">
+        <div class="title-area text-center">
+            <h3>Email Activation.</h3>
+        </div> <!-- /.title-area -->
+		{% if messages %}
+			{% for message in messages %}
+			<div class="alert alert-{{message.tags}}" role="alert">
+				{{message}}
+			</div>
+			{% endfor %}
+		{% endif %}
+        <form method='POST' id="login-form" novalidate>
+            {% csrf_token %}
+            <div class="row">
+                <div class="col-12">
+                    <div class="input-group">
+                        <input type="number" name="otp" maxlength="4">
+                        <label>Code</label>
+                    </div> <!-- /.input-group -->
+                </div> <!-- /.col- -->
+            </div>
+            <div class="row">
+                <div class="col" style="display:flex; justify-content:center">
+                    <!-- <button class="line-button-one mt-3" name="login_btn">Send</button> -->
+                    <button type="submit" class="theme-button-three" name="login_btn">Send</button>
+                </div>
+                <div class="col" style="display:flex; justify-content:center">
+                    <a href="{% url 'contacts' %}" class="theme-button-three" name="cancel_btn">Cancel</a>
+                    <!-- <a href="{% url 'contacts' %}" class="line-button-one cancel-btn mt-3" name="cancel_btn">Cancel</a> -->
+                </div>
+            </div>
+        </form>
+    </div> <!-- /.sign-up-form-wrapper -->
+</div> <!-- /.signUp-page -->
+{% endblock content %}
