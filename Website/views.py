@@ -54,12 +54,16 @@ def contacts(request):
         firstName =request.POST.get('firstName')
         lastName = request.POST.get('lastName')
         Email = request.POST.get('Email').lower() 
-        Password = request.POST.get('Password').lower() 
+        Password = request.POST.get('Password')
+        Password_Confirmation = request.POST.get('Password_Confirmation')
         otp = random.randint(1000,9999)
-
         try:
             user = auth.get_user_by_email(Email)
         except:
+            if Password != Password_Confirmation:
+                messages.error(request, 'The password confirmation mismatch' , extra_tags='danger')
+                return redirect('contacts')
+            
             # send an email
             subject = 'Activate user account'
             body = render_to_string('activate.html', {
@@ -68,13 +72,16 @@ def contacts(request):
             })
             email = EmailMessage(subject, body, settings.EMAIL_HOST_USER, [Email])
             email.send()
+                
             messages.success(request, f'There is an email has been sent to {Email}.')
             #put verify data to session
             request.session['verify'] = {'otp':otp, 'data':request.POST}
             return redirect('email_verify')
         else:
             messages.error(request, 'This email already exits!' , extra_tags='danger')
-            return redirect('email_verify')
+            if Password != Password_Confirmation:
+                messages.error(request, 'The password confirmation mismatch' , extra_tags='danger')
+            return redirect('contacts')
         
     return render(request, 'contacts.html')
 

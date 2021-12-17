@@ -85,7 +85,7 @@
 			<div class="theme-main-menu theme-menu-two main-p-color sticky-menu">
 				<div class="d-flex align-items-center">
 					<div class="navlog right-content ml-auto order-lg-3">
-						<a href="https://www.facebook.com/XEats" class="theme-btn line-button-one button-rose contact-button button-white-bg" target="_blank">Contact us</a>
+						<a href="https://www.facebook.com/XEats" style="height: fit-content;width:fit-content; min-width:fit-content" class="theme-btn line-button-one button-rose contact-button button-white-bg" target="_blank">Contact us</a>
 						{% if request.session.Email %}
 						<a href="{% url 'logout' %}" class="theme-btn line-button-one button-rose contact-button button-white-bg" style="margin-left: 20px;">Logout</a>
 						{% else %}
@@ -100,14 +100,14 @@
 						   <div class="collapse navbar-collapse" id="navbarSupportedContent">
 						   		<ul class="navbar-nav">
 								    <li class="nav-item dropdown mega-dropdown-holder active">
-							            <a href="{% url 'index' %}"  class="nav-link dropdown-toggle">Home</a>
+							            <a href="{% url 'index' %}" class="nav-link">Home</a>
 							        </li>
 							        <li class="nav-item dropdown icon-menu">
-										<a class="nav-link dropdown-toggle" target="_blank" href="https://www.facebook.com/XEats">About Us.</a>
+										<a class="nav-link" target="_blank" href="https://www.facebook.com/XEats">About Us.</a>
 							        </li>
 									{% if request.session.Email %}
 									<li class="nav-item dropdown mega-dropdown-holder active" style="display: flex; align-items:center">
-										<span class="dropdown-toggle">{{request.session.Email|lower}}</span>
+										<span>{{request.session.Email|lower}}</span>
 									</li>
 									{% endif %}
 								</ul>
